@@ -1,0 +1,18 @@
+name: Test liquibase-ansible role
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Deploy Playbook
+        run: |
+          ansible-galaxy install -r meta/requirements.yml
+          ansible-playbook --connection=local --inventory 127.0.0.1, $PWD/.github/playbook.yml
