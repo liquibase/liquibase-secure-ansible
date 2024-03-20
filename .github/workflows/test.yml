@@ -1,5 +1,5 @@
 
-name: Test the role
+name: Ansible Role Test
 on:
   pull_request:
     branches:
@@ -19,3 +19,4 @@ jobs:
         run: |
           ansible-galaxy install -r meta/requirements.yml
           ansible-playbook --connection=local --inventory 127.0.0.1, playbook.yml
+          
