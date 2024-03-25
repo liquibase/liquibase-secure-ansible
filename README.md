@@ -4,18 +4,18 @@
 
 The Liquibase Ansible role installs [Liquibase](http://www.liquibase.org).
 
-## :link: Requirements
+## Requirements
 
 See [meta/requirements.yml](meta/requirements.yml)
 
-## :nut_and_bolt: Role Variables
+## Role Variables
 
 * **liquibase_ver**: This property appears to specify the default version of Liquibase. **Default value** -> `4.26.0`
 * **liquibase_mirror**: This property specifies the default mirror or repository from which Liquibase releases can be downloaded. **Default value** -> `https://github.com/liquibase/liquibase/releases/download`
 * **liquibase_parent_install_dir**: This property indicates the default parent installation directory for Liquibase. **Default value** -> `/usr/local`
 * **liquibase_checksums**: Checksums for different versions of Liquibase along with their respective download URLs. The checksums are SHA-256 hashes calculated for each Liquibase release file, ensuring the integrity of the downloaded files.
 
-## :clipboard: Example Playbook (installs latest liquibase release)
+## Example Playbook (installs latest liquibase release)
 
 ```yml
 - hosts: server
@@ -23,7 +23,7 @@ See [meta/requirements.yml](meta/requirements.yml)
     - role: liquibase.liquibase
 ```
 
-## :clipboard: Example Playbook (installs liquibase 4.26.0)
+## Example Playbook (installs liquibase 4.26.0)
 
 ```yml
 - hosts: server
@@ -33,7 +33,7 @@ See [meta/requirements.yml](meta/requirements.yml)
         - 4.26.0
 ```
 
-## :anger: Example Playbook installation process
+## Example Playbook installation process
 
 Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances. 
 
@@ -73,9 +73,9 @@ Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances.
 
 5. **Verify**: After running the playbook, verify that Liquibase changes were applied successfully on all three EC2 instances. You may need to log in to each instance and check the status of your database schema to ensure that the changes were applied as expected.
 
-## :anger: Standalone role install
+## Standalone role install
 
-### :cyclone: Install the role
+### Install the role
 
 ```bash
 ansible-galaxy role install liquibase.liquibase
