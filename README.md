@@ -81,13 +81,13 @@ Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances.
 ansible-galaxy role install liquibase.liquibase
 ```
 
-### :x: Uninstall the role
+### Uninstall the role
 
 ```bash
 ansible-galaxy role remove liquibase.liquibase
 ```
 
-### :arrows_counterclockwise: Upgrade the role
+### Upgrade the role
 
 The recommended path to update a role is to use the `--force` option
 
