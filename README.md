@@ -39,7 +39,7 @@ Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances.
 
 1. **Set up your inventory**: Create an inventory file (`inventory.ini`) listing the IP addresses or hostnames of your three EC2 instances.
 
-  ```txt
+  ```
   [liquibase_hosts]
   10.0.0.1
   10.0.0.2
@@ -55,7 +55,6 @@ Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances.
 3. **Write your playbook**: Create an Ansible playbook (`playbook.yml`) that uses the Liquibase role and targets the hosts specified in your inventory file:
 
   ```yml
-  ---
   - name: Apply Liquibase changes
     hosts: liquibase_hosts
     become: yes
