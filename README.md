@@ -37,40 +37,40 @@ See [meta/requirements.yml](meta/requirements.yml)
 
 Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances. 
 
-1. **Set up your inventory**: Create an inventory file (`inventory.ini`) listing the IP addresses or hostnames of your three EC2 instances.
+* **Set up your inventory**: Create an inventory file (`inventory.ini`) listing the IP addresses or hostnames of your three EC2 instances.
 
-  ```
-  [liquibase_hosts]
-  10.0.0.1
-  10.0.0.2
-  10.0.0.3
-  ```
+```bash
+[liquibase_hosts]
+10.0.0.1
+10.0.0.2
+10.0.0.3
+```
 
-2. **Install the Liquibase Ansible role**: The Liquibase Ansible role is available on Ansible Galaxy, you can install it using the ansible-galaxy command:
+* **Install the Liquibase Ansible role**: The Liquibase Ansible role is available on Ansible Galaxy, you can install it using the ansible-galaxy command:
 
-  ```bash
-  ansible-galaxy role install liquibase.liquibase
-  ```
+```bash
+ansible-galaxy role install liquibase.liquibase
+```
 
-3. **Write your playbook**: Create an Ansible playbook (`playbook.yml`) that uses the Liquibase role and targets the hosts specified in your inventory file:
+* **Write your playbook**: Create an Ansible playbook (`playbook.yml`) that uses the Liquibase role and targets the hosts specified in your inventory file:
 
-  ```yml
-  - name: Apply Liquibase changes
-    hosts: liquibase_hosts
-    become: yes
-    roles:
-      - liquibase.liquibase
-  ```
+```yml
+- name: Apply Liquibase changes
+  hosts: liquibase_hosts
+  become: yes
+  roles:
+    - liquibase.liquibase
+```
 
-4. **Run your playbook**: Execute the playbook against your inventory using the `ansible-playbook` command:
+* **Run your playbook**: Execute the playbook against your inventory using the `ansible-playbook` command:
 
-  ```bash
-  ansible-playbook -i inventory.ini playbook.yml
-  ```
+```bash
+ansible-playbook -i inventory.ini playbook.yml
+```
 
-  This command will apply the Liquibase changes using the role to the specified EC2 instances.
+This command will apply the Liquibase changes using the role to the specified EC2 instances.
 
-5. **Verify**: After running the playbook, verify that Liquibase changes were applied successfully on all three EC2 instances. You may need to log in to each instance and check the status of your database schema to ensure that the changes were applied as expected.
+* **Verify**: After running the playbook, verify that Liquibase changes were applied successfully on all three EC2 instances. You may need to log in to each instance and check the status of your database schema to ensure that the changes were applied as expected.
 
 ## Standalone role install
 
