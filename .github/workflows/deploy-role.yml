@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          repository: liquibase/liquibase-ansible
 
       - name: Configure Git
         run: |
