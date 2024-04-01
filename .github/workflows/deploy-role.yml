@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: liquibase/liquibase-ansible
+          token: ${{ secrets.BOT_TOKEN }}
 
       - name: Configure Git
         run: |
