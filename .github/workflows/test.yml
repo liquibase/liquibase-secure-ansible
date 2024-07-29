@@ -1,6 +1,7 @@
 
 name: Ansible Role Test
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
