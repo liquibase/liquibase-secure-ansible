@@ -47,11 +47,15 @@ jobs:
         with:
           repository: liquibase/liquibase-ansible
 
-      - name: Configure Git
-        run: |
-          git config --local user.email "64099989+liquibot@users.noreply.github.com"
-          git config --local user.name "liquibot"
-
+      - name: Get GitHub App token
+        id: get-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.LIQUIBASE_GITHUB_APP_ID }}
+          private-key: ${{ secrets.LIQUIBASE_GITHUB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          permission-contents: write
+                
       - name: Update main.yml
         if: ${{ inputs.dry_run == false }}
         env:
@@ -73,7 +77,7 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Update liquibase.version to ${{ inputs.version }}"
-            git remote set-url origin https://liquibot:${{ secrets.GITHUB_TOKEN }}@github.com/liquibase/liquibase-ansible.git
+            git remote set-url origin https://x-access-token:${{ steps.get-token.outputs.token }}@github.com/liquibase/liquibase-ansible.git
             if [[ "${{ inputs.dry_run }}" == false ]]; then
               git push
             else
