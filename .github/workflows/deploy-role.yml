@@ -84,7 +84,7 @@ jobs:
             git commit -m "Update liquibase.version to ${{ inputs.version }}"
             git remote set-url origin https://x-access-token:${{ steps.get-token.outputs.token }}@github.com/liquibase/liquibase-ansible.git
             if [[ "${{ inputs.dry_run }}" == false ]]; then
-              git push "https://${{ steps.get-token.outputs.token }}@github.com/liquibase/liquibase-ansible.git" HEAD:main
+              git push "https://x-access-token:${{ steps.get-token.outputs.token }}@github.com/liquibase/liquibase-ansible.git" HEAD:main
             else
                 echo "Dry run mode: changes have not been pushed."
             fi
