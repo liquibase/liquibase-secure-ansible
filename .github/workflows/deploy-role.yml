@@ -42,11 +42,6 @@ jobs:
       LIQUIBASE_VERSION: ${{ inputs.version }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          repository: liquibase/liquibase-ansible
-
       - name: Get GitHub App token
         id: get-token
         uses: actions/create-github-app-token@v2
@@ -56,6 +51,12 @@ jobs:
           owner: ${{ github.repository_owner }}
           permission-contents: write
 
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: liquibase/liquibase-ansible
+          token: ${{ steps.get-token.outputs.token }}
+
       - name: Configure Git
         run: |
           git config --local user.email "64099989+liquibot@users.noreply.github.com"
@@ -63,8 +64,6 @@ jobs:
                 
       - name: Update main.yml
         if: ${{ inputs.dry_run == false }}
-        env:
-          GH_TOKEN: ${{ steps.get-token.outputs.token }}
         run: |
           sed -i "s/liquibase_ver: .*/liquibase_ver: ${{ inputs.version }}/" defaults/main.yml
           if [[ "${{ inputs.dry_run }}" == false ]]; then
@@ -82,9 +81,8 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Update liquibase.version to ${{ inputs.version }}"
-            git remote set-url origin https://x-access-token:${{ steps.get-token.outputs.token }}@github.com/liquibase/liquibase-ansible.git
             if [[ "${{ inputs.dry_run }}" == false ]]; then
-              git push "https://x-access-token:${{ steps.get-token.outputs.token }}@github.com/liquibase/liquibase-ansible.git" HEAD:main
+              git push
             else
                 echo "Dry run mode: changes have not been pushed."
             fi
