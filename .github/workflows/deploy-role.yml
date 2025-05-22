@@ -55,6 +55,11 @@ jobs:
           private-key: ${{ secrets.LIQUIBASE_GITHUB_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           permission-contents: write
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "64099989+liquibot@users.noreply.github.com"
+          git config --local user.name "liquibot"
                 
       - name: Update main.yml
         if: ${{ inputs.dry_run == false }}
