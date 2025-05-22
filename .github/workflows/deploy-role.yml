@@ -64,7 +64,7 @@ jobs:
       - name: Update main.yml
         if: ${{ inputs.dry_run == false }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.get-token.outputs.token }}
         run: |
           sed -i "s/liquibase_ver: .*/liquibase_ver: ${{ inputs.version }}/" defaults/main.yml
           if [[ "${{ inputs.dry_run }}" == false ]]; then
