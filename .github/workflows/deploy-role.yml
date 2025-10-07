@@ -82,7 +82,7 @@ jobs:
         run: |
           sed -i "s/liquibase_ver: .*/liquibase_ver: ${{ inputs.version }}/" defaults/main.yml
           if [[ "${{ inputs.dry_run }}" == false ]]; then
-            wget -O liquibase-secure-${{ inputs.version }}.tar.gz https://package.liquibase.com/downloads/secure/ansible/liquibase-${{ inputs.version }}.tar.gz
+            wget -O liquibase-secure-${{ inputs.version }}.tar.gz https://package.liquibase.com/downloads/secure/ansible/liquibase-secure-${{ inputs.version }}.tar.gz
           else
             wget --content-disposition --header="Accept: application/octet-stream" --header="Authorization: Token ${{ secrets.GITHUB_TOKEN }}" -O liquibase-${{ inputs.version }}.tar.gz ${{ inputs.dry_run_tar_gz_url }}
           fi
