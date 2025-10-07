@@ -43,7 +43,6 @@ jobs:
       LIQUIBASE_VERSION: ${{ inputs.version }}
 
     steps:
-
       - name: Configure AWS credentials for vault access
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -77,13 +76,13 @@ jobs:
         run: |
           git config --local user.email "64099989+liquibot@users.noreply.github.com"
           git config --local user.name "liquibot"
-                
+
       - name: Update main.yml
         if: ${{ inputs.dry_run == false }}
         run: |
           sed -i "s/liquibase_ver: .*/liquibase_ver: ${{ inputs.version }}/" defaults/main.yml
           if [[ "${{ inputs.dry_run }}" == false ]]; then
-            wget -O liquibase-${{ inputs.version }}.tar.gz https://github.com/liquibase/liquibase/releases/download/v${{ inputs.version }}/liquibase-${{ inputs.version }}.tar.gz
+            wget -O liquibase-${{ inputs.version }}.tar.gz https://package.liquibase.com/downloads/oss/ansible/liquibase-${{ inputs.version }}.tar.gz
           else
             wget --content-disposition --header="Accept: application/octet-stream" --header="Authorization: Token ${{ secrets.GITHUB_TOKEN }}" -O liquibase-${{ inputs.version }}.tar.gz ${{ inputs.dry_run_tar_gz_url }}
           fi
