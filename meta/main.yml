@@ -2,7 +2,7 @@
 galaxy_info:
   author: liquibase
   company: liquibase
-  description: installs liquibase
+  description: installs liquibase-secure
   galaxy_tags:
     - development
   license: Apache-2.0

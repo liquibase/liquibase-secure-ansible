@@ -69,7 +69,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: liquibase/liquibase-ansible
+          repository: liquibase/liquibase-secure-ansible
           token: ${{ steps.get-token.outputs.token }}
 
       - name: Configure Git
@@ -82,11 +82,11 @@ jobs:
         run: |
           sed -i "s/liquibase_ver: .*/liquibase_ver: ${{ inputs.version }}/" defaults/main.yml
           if [[ "${{ inputs.dry_run }}" == false ]]; then
-            wget -O liquibase-${{ inputs.version }}.tar.gz https://package.liquibase.com/downloads/oss/ansible/liquibase-${{ inputs.version }}.tar.gz
+            wget -O liquibase-secure-${{ inputs.version }}.tar.gz https://package.liquibase.com/downloads/secure/ansible/liquibase-${{ inputs.version }}.tar.gz
           else
             wget --content-disposition --header="Accept: application/octet-stream" --header="Authorization: Token ${{ secrets.GITHUB_TOKEN }}" -O liquibase-${{ inputs.version }}.tar.gz ${{ inputs.dry_run_tar_gz_url }}
           fi
-          sha256=$(sha256sum liquibase-${{ inputs.version }}.tar.gz | awk '{ print $1 }')
+          sha256=$(sha256sum liquibase-secure-${{ inputs.version }}.tar.gz | awk '{ print $1 }')
           echo "SHA256: $sha256"
           echo "  '${{ inputs.version }}': sha256:$sha256" >> defaults/main.yml
           cat defaults/main.yml
@@ -106,4 +106,4 @@ jobs:
       - name: Ansible import
         if: ${{ inputs.dry_run == false }}
         run: |
-          ansible-galaxy role import --token ${{ env.ANSIBLE_TOKEN }} --branch main --role-name liquibase liquibase liquibase-ansible
+          ansible-galaxy role import --token ${{ env.ANSIBLE_TOKEN }} --branch main --role-name liquibase liquibase liquibase-secure-ansible

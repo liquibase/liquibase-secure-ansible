@@ -17,7 +17,7 @@
     path: '{{ liquibase_install_dir }}'
   changed_when: false
   register: liquibase_binary
-- name: Downloading and installing liquibase
+- name: Downloading and installing liquibase-secure
   when: not liquibase_binary.stat.exists
   block:
     - name: Downloading {{ liquibase_tgz_url }}
