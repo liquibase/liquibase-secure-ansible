@@ -106,4 +106,4 @@ jobs:
       - name: Ansible import
         if: ${{ inputs.dry_run == false }}
         run: |
-          ansible-galaxy role import --token ${{ env.ANSIBLE_TOKEN }} --branch main --role-name liquibase liquibase liquibase-secure-ansible
+          ansible-galaxy role import --token ${{ env.ANSIBLE_TOKEN }} --branch main --role-name liquibase-secure liquibase liquibase-secure-ansible
