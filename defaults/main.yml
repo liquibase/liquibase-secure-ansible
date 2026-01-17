@@ -1,6 +1,6 @@
 ---
 # defaults file for liquibase
-liquibase_ver: devops-test-reusable-workflow
+liquibase_ver: devopstest-reusable-workflows
 liquibase_mirror: https://package.liquibase.com/downloads/secure/ansible
 liquibase_parent_install_dir: /usr/local
 liquibase_checksums:
@@ -12,3 +12,4 @@ liquibase_checksums:
   '5.0.2': sha256:0330c556d8adf1fbc95fe4685043b98438b3d6e723e3c5c243066b1926bf10f2
   '5.0.3': sha256:274b84056a8350ec25fbcf35410385bc0451f3e986ee5f8ec523b1ec9c1f4fcf
   'devops-test-reusable-workflow': sha256:0d1caf353f20ebeb79376e0aa27d6db0ce37a577a1548e2d3940ec34f626d5eb
+  'devopstest-reusable-workflows': sha256:804e5949d26a936301622dc135e82e29e103b4f37978dec32d08985cb792cebf
