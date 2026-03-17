@@ -1,8 +1,8 @@
-# Liquibase Ansible Role
+# Liquibase Secure Ansible Role
 
 ![Build Status](https://github.com/liquibase/liquibase/actions/workflows/build.yml/badge.svg)
 
-The Liquibase Ansible role installs [Liquibase](http://www.liquibase.org).
+The Liquibase Secure Ansible role installs [Liquibase Secure](http://www.liquibase.org).
 
 ## Requirements
 
@@ -10,32 +10,32 @@ See [meta/requirements.yml](meta/requirements.yml)
 
 ## Role Variables
 
-* **liquibase_ver**: This property appears to specify the default version of Liquibase. **Default value** -> `4.26.0`
-* **liquibase_mirror**: This property specifies the default mirror or repository from which Liquibase releases can be downloaded. **Default value** -> `https://github.com/liquibase/liquibase/releases/download`
-* **liquibase_parent_install_dir**: This property indicates the default parent installation directory for Liquibase. **Default value** -> `/usr/local`
-* **liquibase_checksums**: Checksums for different versions of Liquibase along with their respective download URLs. The checksums are SHA-256 hashes calculated for each Liquibase release file, ensuring the integrity of the downloaded files.
+* **liquibase_ver**: The version of Liquibase Secure to install. **Default value** -> `5.1.0`
+* **liquibase_mirror**: The mirror from which Liquibase Secure releases are downloaded. **Default value** -> `https://package.liquibase.com/downloads/secure/ansible`
+* **liquibase_parent_install_dir**: The parent installation directory for Liquibase Secure. **Default value** -> `/usr/local`
+* **liquibase_checksums**: SHA-256 checksums for each Liquibase Secure release, used to verify the integrity of downloaded files.
 
-## Example Playbook (installs latest liquibase release)
+## Example Playbook (installs latest liquibase-secure release)
 
 ```yml
 - hosts: server
   roles:
-    - role: liquibase.liquibase
+    - role: liquibase.liquibase-secure
 ```
 
-## Example Playbook (installs liquibase 4.26.0)
+## Example Playbook (installs liquibase-secure 5.1.0)
 
 ```yml
 - hosts: server
   roles:
-    - role: liquibase.liquibase
+    - role: liquibase.liquibase-secure
       liquibase_ver:
-        - 4.26.0
+        - 5.1.0
 ```
 
 ## Example Playbook installation process
 
-Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances. 
+Let's say you would like to have `liquibase-secure` installed in 3 AWS ec2 instances.
 
 * **Set up your inventory**: Create an inventory file (`inventory.ini`) listing the IP addresses or hostnames of your three EC2 instances.
 
@@ -46,20 +46,20 @@ Let's say you would like to have `liquibase` installed in 3 AWS ec2 instances.
 10.0.0.3
 ```
 
-* **Install the Liquibase Ansible role**: The Liquibase Ansible role is available on Ansible Galaxy, you can install it using the ansible-galaxy command:
+* **Install the Liquibase Secure Ansible role**: The Liquibase Secure Ansible role is available on Ansible Galaxy, you can install it using the ansible-galaxy command:
 
 ```bash
-ansible-galaxy role install liquibase.liquibase
+ansible-galaxy role install liquibase.liquibase-secure
 ```
 
-* **Write your playbook**: Create an Ansible playbook (`playbook.yml`) that uses the Liquibase role and targets the hosts specified in your inventory file:
+* **Write your playbook**: Create an Ansible playbook (`playbook.yml`) that uses the Liquibase Secure role and targets the hosts specified in your inventory file:
 
 ```yml
-- name: Apply Liquibase changes
+- name: Install Liquibase Secure
   hosts: liquibase_hosts
   become: yes
   roles:
-    - liquibase.liquibase
+    - liquibase.liquibase-secure
 ```
 
 * **Run your playbook**: Execute the playbook against your inventory using the `ansible-playbook` command:
@@ -68,22 +68,22 @@ ansible-galaxy role install liquibase.liquibase
 ansible-playbook -i inventory.ini playbook.yml
 ```
 
-This command will apply the Liquibase changes using the role to the specified EC2 instances.
+This command will install Liquibase Secure on the specified EC2 instances.
 
-* **Verify**: After running the playbook, verify that Liquibase changes were applied successfully on all three EC2 instances. You may need to log in to each instance and check the status of your database schema to ensure that the changes were applied as expected.
+* **Verify**: After running the playbook, verify that Liquibase Secure was installed successfully on all three EC2 instances. You may need to log in to each instance and check the installation.
 
 ## Standalone role install
 
 ### Install the role
 
 ```bash
-ansible-galaxy role install liquibase.liquibase
+ansible-galaxy role install liquibase.liquibase-secure
 ```
 
 ### Uninstall the role
 
 ```bash
-ansible-galaxy role remove liquibase.liquibase
+ansible-galaxy role remove liquibase.liquibase-secure
 ```
 
 ### Upgrade the role
@@ -91,5 +91,5 @@ ansible-galaxy role remove liquibase.liquibase
 The recommended path to update a role is to use the `--force` option
 
 ```bash
-ansible-galaxy install --force liquibase.liquibase
+ansible-galaxy install --force liquibase.liquibase-secure
 ```
